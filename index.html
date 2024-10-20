@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitha ghor form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <section>
+            <h1 class="color-text">Please fill up the form</h1>
+            <form id="myForm">
+                <label for="name">
+                    Your Name:
+                    <input id="name" type="text" placeholder="Your Name" required>
+                </label>
+                <label for="email">
+                    Your Email:
+                    <input id="email" type="email" placeholder="Your email id" required>
+                </label>
+                <label for="phone">
+                    Your Phone:
+                    <input id="phone" type="text" placeholder="Your phone number" required>
+                </label>
+                <fieldset>
+                    <legend class="color-text">Please select only one from below</legend>
+                    <label>
+                        <input type="radio" name="education" id="school" value="School">School
+                    </label>
+                    <label>
+                        <input type="radio" name="education" id="college" value="College">College
+                    </label>
+                    <label>
+                        <input type="radio" name="education" id="university" value="University">University
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend class="color-text">Please select duration of the course</legend>
+                    <label>
+                        <input type="checkbox" name="duration" id="school-duration" value="12 years of schooling">12 years of schooling
+                    </label>
+                    <label>
+                        <input type="checkbox" name="duration" id="college-duration" value="2 years of intensive school">2 years of intensive school
+                    </label>
+                    <label>
+                        <input type="checkbox" name="duration" id="university-duration" value="4 years of graduation">4 years of graduation
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend class="color-text">Write about your courses</legend>
+                    <textarea name="courses" id="courses" cols="40" rows="6" placeholder="Write about your courses"></textarea>
+                </fieldset>
+                <input type="reset" value="Reset">
+                <input type="submit" value="Submit">
+            </form>
+            
+            <!-- Div to display submitted values -->
+            <div id="formDataDisplay"></div>
+        </section>
+    </main>
+    <footer><small></small></footer>
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents form submission from refreshing the page
+
+            // Get form input values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Get selected radio button value (education)
+            const education = document.querySelector('input[name="education"]:checked') ? document.querySelector('input[name="education"]:checked').value : 'None selected';
+
+            // Get checked checkbox values (durations)
+            const durations = Array.from(document.querySelectorAll('input[name="duration"]:checked')).map(checkbox => checkbox.value).join(', ') || 'None selected';
+
+            // Get the text area value
+            const courses = document.getElementById('courses').value;
+
+            // Display the form data
+            const formDataDisplay = document.getElementById('formDataDisplay');
+            formDataDisplay.innerHTML = `
+                <h2>Submitted Data:</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Education:</strong> ${education}</p>
+                <p><strong>Course Duration:</strong> ${durations}</p>
+                <p><strong>Courses Description:</strong> ${courses}</p>
+            `;
+        });
+    </script>
+</body>
+</html>

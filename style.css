@@ -1,0 +1,15 @@
+label{
+    
+    display: block;
+    margin-top: 10px;
+    padding-left: 10px;
+    
+}
+fieldset{
+    background-color: lightgray;
+    margin-top: 50px;
+}
+.color-text{
+    border: 3px solid red;
+    border-radius: 5px;
+}
